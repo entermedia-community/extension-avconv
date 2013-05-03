@@ -3,7 +3,7 @@ importPackage( Packages.java.util );
 importPackage( Packages.java.lang );
 importPackage( Packages.com.openedit.modules.update );
 
-var name = "extension-ooffice";
+var name = "extension-avconv";
 
 var war = "http://dev.entermediasoftware.com/jenkins/job/@BRANCH@" + name + "/lastSuccessfulBuild/artifact/deploy/" + name + ".zip";
 
@@ -19,16 +19,10 @@ log.add("2. UNZIP WAR FILE");
 var unziper = new ZipUtil();
 unziper.unzip(  tmp + "/" + name + ".zip",  tmp );
 
-log.add("3. REPLACE LIBS");
+log.add("3. Copy Over Site " + tmp + " " + "to root");
 var files = new FileUtils();
 
-
-files.deleteMatch( web + "/lib/extension-ooffice*.jar");
-
-files.copyFileByMatch( tmp + "/lib/extension-ooffice*.jar", web + "/lib/");
-
-log.add("Copy " +  tmp + "/lib/extension-ooffice*.jar" + " -> "  + web + "/lib/");
-
+files.copyFiles( tmp, root);
 
 log.add("5. CLEAN UP");
 files.deleteAll(tmp);
