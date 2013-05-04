@@ -17,12 +17,12 @@ downloader.download( war, tmp + "/" + name + ".zip");
 
 log.add("2. UNZIP WAR FILE");
 var unziper = new ZipUtil();
-unziper.unzip(  tmp + "/" + name + ".zip",  tmp );
+unziper.unzip(  tmp + "/" + name + ".zip",  tmp + "/unzip/" );
 
-log.add("3. Copy Over Site " + tmp + " " + "to root");
+log.add("3. Copy Over Site " + tmp + "/unzip/" + " " + "to " + root);
 var files = new FileUtils();
 
-files.copyFiles( tmp, root);
+files.copyFiles( tmp + "/unzip", root);
 
 log.add("5. CLEAN UP");
 files.deleteAll(tmp);
