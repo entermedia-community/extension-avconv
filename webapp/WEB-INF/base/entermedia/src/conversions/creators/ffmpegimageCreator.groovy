@@ -92,9 +92,14 @@ public class ffmpegimageCreator extends BaseImageCreator
 		
 		List<String> com = new ArrayList<String>();
 
-		// These two MUST be the first two arguments. See below.
-		com.add("-ss");
-		com.add(offset);
+		int jumpoff = Integer.parseInt(offset);
+		if( jumpoff > 2 )
+		{
+			com.add("-ss");
+			com.add(String.valueOf( jumpoff - 2 ) );
+			offset = "2";
+		}
+
 		//com.add("-deinterlace");
 		com.add("-i");
 		com.add(input.getContentItem().getAbsolutePath()); // TODO: Might need [0] to pick the
@@ -104,6 +109,10 @@ public class ffmpegimageCreator extends BaseImageCreator
 		com.add("1");
 		com.add("-f");
 		com.add("mjpeg");
+
+		com.add("-ss");
+		com.add(offset);
+
 
 		// -s 640x480
 		// com.add("-s");
