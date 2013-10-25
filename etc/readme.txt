@@ -1,10 +1,12 @@
 #sudo apt-get remove ffmpeg x264 libx264-dev
 
-yum remove ffmpeg x264 libx264-dev
+yum remove ffmpeg x264 libx264-dev faac-devel lame-devel
 
 wget ftp://ftp.videolan.org/pub/x264/snapshots/last_x264.tar.bz2
 
-./configure --enable-static
+./configure --enable-shared --enable-static --prefix=/usr
+./configure --enable-shared  --prefix=/usr
+#./configure --enable-static
 
 make
 make install
