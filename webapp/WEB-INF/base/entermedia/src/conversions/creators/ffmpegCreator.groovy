@@ -124,14 +124,14 @@ public class ffmpegCreator extends BaseCreator implements MediaCreator
 
 				if( inStructions.get("preset") != null )
 				{
-					log.info("preset found");
+					//log.info("preset found");
 					comm.add("-preset"); 
 					comm.add(inStructions.get("preset"));
 				}
 				
 				if( inStructions.get("vpre") != null ) //Legacy ffmpeg support
 				{
-					log.info("vpre found");
+					//log.info("vpre found");
 					comm.add("-vpre");
 					comm.add(inStructions.get("vpre"));
 				}
@@ -144,7 +144,7 @@ public class ffmpegCreator extends BaseCreator implements MediaCreator
 				//comm.add("-aspect");
 				//comm.add("640:480");
 				comm.add("-threads");
-				comm.add("0");
+				comm.add("2");
 				if( inStructions.get("setpts") != null )
 				{
 					comm.add("setpts=" + inStructions.get("setpts") + "*PTS");
