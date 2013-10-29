@@ -103,7 +103,10 @@ public class ffmpegCreator extends BaseCreator implements MediaCreator
 				setValue("vcodec","libx264",inStructions,comm);				
 				setValue("preset",null,inStructions,comm);
 				setValue("vpre",null,inStructions,comm);  //legacy?
-				setValue("crf","28",inStructions,comm); //legacy?
+				if( inStructions.get("b") == null )
+				{ 	
+					setValue("crf","20",inStructions,comm); //legacy?
+				}
 				setValue("framerate",null,inStructions,comm);
 				
 				//One-pass CRF (Constant Rate Factor) using the slow preset. One-pass CRF is good for general encoding and is what I use most often. Adjust -crf to change the quality. Lower numbers mean higher quality and a larger output file size. A sane range is 18 to 28.
